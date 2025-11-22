@@ -5,7 +5,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
-from config.config import Config, load_config
+from config.config import settings
 from handlers.start_hd import start_router
 from keyboards.menu_kb import set_main_menu
 
@@ -14,16 +14,15 @@ logger = logging.getLogger(__name__)
 
 
 async def main():
-    config: Config = load_config()
 
     logging.basicConfig(
-        level=logging.getLevelName(level=config.log.level),
-        format=config.log.format,
+        level=logging.getLevelName(level=settings.log_level),
+        format=settings.log_format,
     )
     logger.info("Starting bot")
 
     bot = Bot(
-        token=config.bot.token,
+        token=settings.bot_token,
         default=DefaultBotProperties(parse_mode=ParseMode.HTML)
     )
     dp = Dispatcher()

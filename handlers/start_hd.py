@@ -13,6 +13,6 @@ async def start_cmd(message: Message):
     await message.answer(LEXICON['start'], reply_markup=create_mainmenu_kb())
 
 
-@start_router.message(Command('about'))
+@start_router.message(Command('help'))
 async def about_cmd(message: Message):
     await message.answer(LEXICON['help'])
