@@ -15,22 +15,24 @@ class Categories(Base):
     __tablename__ = "categories"
     
     id: Mapped[intpk]
-    name: Mapped[str] = mapped_column(String(50))
+    category_name: Mapped[str] = mapped_column(String(50))
+    is_active: Mapped[bool]
 
-    teas: Mapped[list["Teas"]] = relationship(back_populates="categories") #relationship
+    teas: Mapped[list["Teas"]] = relationship(back_populates="category") #relationship
 
 
 class Teas(Base):
     __tablename__ = "teas"
 
     id: Mapped[intpk]
-    name: Mapped[str] = mapped_column(String(150))
+    tea_name: Mapped[str] = mapped_column(String(150))
     description: Mapped[str]
     price: Mapped[float] = mapped_column(Numeric(scale=3))
     stock: Mapped[int]
     category_id: Mapped[int] = mapped_column(ForeignKey("categories.id"))
-    catergory: Mapped[list["Categories"]] = relationship(back_populates="teas") #relationship   
+    category: Mapped[list["Categories"]] = relationship(back_populates="teas") #relationship   
     image_url: Mapped[str]
+    is_active: Mapped[bool]
 
 
 class Users(Base):
@@ -44,6 +46,12 @@ class Users(Base):
         TIMESTAMP(timezone=True),
         server_default=text("NOW()")
     )
+
+
+class Admins(Base):
+    __tablename__ = "admins"
+    id: Mapped[intpk]
+    admin_tg_id: Mapped[int] = mapped_column(BigInteger)
 
 
 class Cart(Base):

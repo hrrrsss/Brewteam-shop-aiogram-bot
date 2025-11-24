@@ -3,7 +3,8 @@ from aiogram.types import Message
 from aiogram.filters import CommandStart, Command
 
 from lexicon.lexicon import LEXICON
-from keyboards.main_menu_kb import create_mainmenu_kb
+from keyboards.users_kb.main_menu_kb import create_mainmenu_kb
+from database.help_func.admin_check import is_admin
 
 
 start_router = Router()
