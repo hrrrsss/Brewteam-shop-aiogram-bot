@@ -13,7 +13,6 @@ async def del_category(id: int):
                 await session.execute(delete(Categories).where(Categories.id == id))
             except SQLAlchemyError as e:
                 print("Ошибка при удалении категории", e)
-                return False
+                return "Ошибка при удалении категории"
     
-    print("Категория удалена")
-    return True
+    return "Категория удалена"

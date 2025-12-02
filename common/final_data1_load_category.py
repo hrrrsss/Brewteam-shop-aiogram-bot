@@ -15,7 +15,6 @@ async def final_data_load_category(data: dict):
                 )
                 await session.execute(new_category)
             except SQLAlchemyError as e:
-                print(e)
-                return "Ошибка при удалении категории"
-
+                print("Ошибка при добавлении категории", e)
+                return "Ошибка при добавлении категории"
     return "Категория добавлена"
