@@ -24,6 +24,20 @@ async def get_categories():
         done = await session.execute(result)
         result = done.fetchall()
         return result
+    
+
+async def get_teas_for_categories(id_category: int):
+    async with async_session() as session:
+        async with session.begin():
+            result = await session.execute(
+                select(Teas)
+                .where(Teas.category_id == id_category)
+                .order_by(Teas.id)
+            )
+
+        return result.scalars().all()
+
+
 
 
 async def create_categories_kb():
@@ -33,7 +47,7 @@ async def create_categories_kb():
 
     for c in categories:
         kb_builder.row(
-            InlineKeyboardButton(text=c[1], callback_data=f"category:{c[0]}"),
+            InlineKeyboardButton(text=c[1], callback_data=f"category_{c[0]}"),
         )
 
     return kb_builder.as_markup()
