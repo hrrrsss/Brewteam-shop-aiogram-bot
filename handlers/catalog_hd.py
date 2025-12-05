@@ -31,7 +31,7 @@ async def catalog_cb(callback: CallbackQuery, state: FSMContext):
     await state.set_state(PaginationTeas.category)
 
 
-@catalog_router.callback_query(PaginationTeas.category)
+@catalog_router.callback_query(PaginationTeas.category, F.data.startswith("category"))
 async def teas_cb(callback: CallbackQuery, state: FSMContext):
     id_category = int(callback.data[callback.data.rfind("_")+1:])
     result = await get_teas_for_categories(id_category)

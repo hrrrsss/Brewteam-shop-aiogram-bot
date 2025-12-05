@@ -8,7 +8,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
 from config.config import settings
-from handlers import start_hd, catalog_hd, admin_hd
+from handlers import cart_and_pay_hd, start_hd, catalog_hd, admin_hd
 from keyboards.users_kb.menu_kb import set_main_menu
 
 
@@ -38,6 +38,7 @@ async def main():
     dp.include_router(start_hd.start_router)
     dp.include_router(admin_hd.admin_router)
     dp.include_router(catalog_hd.catalog_router)
+    dp.include_router(cart_and_pay_hd.cart_router)
 
 
     await bot.delete_webhook(drop_pending_updates=True)

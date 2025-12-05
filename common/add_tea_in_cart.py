@@ -29,7 +29,7 @@ async def add_tea_in_cart(user_id: int, tea_id: int):
                 print("Ошибка добавления чая в корзину", e)
 
     if count > 0:
-        return f"Чай добавлен в корзину (кол-во - {count})"
+        return f"Чай добавлен в корзину (кол-во - {count+1})"
     else:
         return "Чай добавлен"
         

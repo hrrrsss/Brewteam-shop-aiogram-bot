@@ -1,5 +1,5 @@
-from aiogram import Router
-from aiogram.types import Message
+from aiogram import Router, F
+from aiogram.types import Message, CallbackQuery
 from aiogram.filters import CommandStart, Command
 
 from lexicon.lexicon import LEXICON
@@ -19,5 +19,10 @@ async def start_cmd(message: Message):
 
 
 @start_router.message(Command('help'))
-async def about_cmd(message: Message):
+async def help_cmd(message: Message):
     await message.answer(LEXICON['help'])
+
+
+@start_router.callback_query(F.data == "about_shop")
+async def about_cmd(callback: CallbackQuery):
+    await callback.message.edit_text(LEXICON['about'])

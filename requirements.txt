@@ -6,3 +6,5 @@ asyncpg==0.30.0
 sqlalchemy==2.0.44
 
 redis==7.1.0
+
+yookassa==3.8.0
