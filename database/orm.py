@@ -75,11 +75,11 @@ class Status(enum.Enum):
 class Orders(Base):
     __tablename__ = "orders"
 
-    id: Mapped[intpk]
+    id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
-    status: Mapped[Status]
+    status: Mapped[str] = mapped_column(String(70))
+    label: Mapped[str] = mapped_column(String(70))
     total_price: Mapped[float] = mapped_column(Numeric(scale=3))
-    created_at: Mapped[datetime] = mapped_column(
-        TIMESTAMP(timezone=True),
-        server_default=text("NOW()")
-    )
+    user_name: Mapped[str] = mapped_column(String(30))
+    address: Mapped[str] = mapped_column(String(80))
+    phone: Mapped[str] = mapped_column(String(12))

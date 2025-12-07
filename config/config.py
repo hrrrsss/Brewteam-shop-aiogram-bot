@@ -12,6 +12,9 @@ class Settings(BaseSettings):
     DB_PASS: str
     DB_NAME: str
 
+    RECEIVER: str
+    TOKEN_YOO: str
+
     @property
     def DATABASE_URL_asyncpg(self):
         #postgresql+asyncpg://postgres:postgres@localhost:5432/name
